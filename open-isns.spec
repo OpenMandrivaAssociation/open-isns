@@ -1,23 +1,40 @@
-Summary:	An implementation of RFC3720 iSCSI
+%define major	0
+%define libname	%mklibname open-isns %{major}
+%define devname	%mklibname -d open-isns
+
+Summary:	An implementation of RFC4171 iSNS
 Name:		open-isns
 Version:	0.98
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Other
 Url:		http://www.open-iscsi.org
 Source0:	https://github.com/open-iscsi/open-isns/archive/v%{version}.tar.gz
 BuildRequires:	glibc-static-devel
+BuildRequires:	openssl-devel
 
 %description
-Open-iSCSI project is a high-performance, transport independent, multi-platform
-implementation of RFC3720 iSCSI. iSCSI is a protocol for distributed disk
-access using SCSI commands sent over Internet Protocol networks.
+This is a partial implementation of iSNS, according to RFC4171.
+The implementation is still somewhat incomplete, but I'm releasing
+it for your reading pleasure.
 
-%package	devel
-Summary:	devel package for %{name}
+%package -n	%{libname}
+Summary:	%{summary}
+Group:		System/Libraries
 
-%description	devel
-Headers for %{name}
+%description -n	%{libname}
+This is a partial implementation of iSNS, according to RFC4171.
+The implementation is still somewhat incomplete, but I'm releasing
+it for your reading pleasure.
+
+%package -n	%{devname}
+Summary:	Development files for %{name}
+Group:		Development/C
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+
+%description -n	%{devname}
+This package includes the development files for %{name}.
 
 %prep
 %setup -q
@@ -27,7 +44,7 @@ Headers for %{name}
 autoconf
 autoheader
 %serverbuild
-%configure
+%configure --enable-shared
 %make
 
 %install
@@ -41,5 +58,9 @@ autoheader
 %{_sysconfdir}/isns/*.conf
 %{_sbindir}/isn*
 
-%files devel
+%files -n %{libname}
+%{_libdir}/libisns.so.%{major}*
+
+%files -n %{devname}
 %{_includedir}/libisns/*.h
+%{_libdir}/libisns.so
