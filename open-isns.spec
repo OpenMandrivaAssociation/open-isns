@@ -5,7 +5,7 @@
 Summary:	An implementation of RFC4171 iSNS
 Name:		open-isns
 Version:	0.98
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Other
 Url:		http://www.open-iscsi.org
