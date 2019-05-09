@@ -4,8 +4,8 @@
 
 Summary:	An implementation of RFC4171 iSNS
 Name:		open-isns
-Version:	0.98
-Release:	3
+Version:	0.99
+Release:	1
 License:	GPL
 Group:		Networking/Other
 Url:		http://www.open-iscsi.org
@@ -48,11 +48,11 @@ autoheader
 %make
 
 %install
-%makeinstall_std SYSTEMDDIR=%{buildroot}%{_systemunitdir} install_lib install_hdrs
+%makeinstall_std SYSTEMDDIR=%{buildroot}%{_unitdir} install_lib install_hdrs
 
 %files
-%{_systemunitdir}/isnsd.service
-%{_systemunitdir}/isnsd.socket
+%{_unitdir}/isnsd.service
+%{_unitdir}/isnsd.socket
 %{_mandir}/man8/isns*
 %{_mandir}/man5/isns*
 %{_sysconfdir}/isns/*.conf
