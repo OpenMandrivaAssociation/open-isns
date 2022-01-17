@@ -11,7 +11,7 @@ Group:		Networking/Other
 Url:		http://www.open-iscsi.org
 Source0:	https://github.com/open-iscsi/open-isns/archive/v%{version}.tar.gz
 BuildRequires:	glibc-static-devel
-BuildRequires:	openssl-devel
+BuildRequires:	pkgconfig(openssl)
 
 %description
 This is a partial implementation of iSNS, according to RFC4171.
