@@ -8,7 +8,7 @@ Version:	0.101
 Release:	2
 License:	GPL
 Group:		Networking/Other
-Url:		http://www.open-iscsi.org
+Url:		https://www.open-iscsi.org
 Source0:	https://github.com/open-iscsi/open-isns/archive/v%{version}.tar.gz
 BuildRequires:	glibc-static-devel
 BuildRequires:	pkgconfig(openssl)
