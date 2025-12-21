@@ -10,6 +10,11 @@ License:	GPL
 Group:		Networking/Other
 Url:		https://www.open-iscsi.org
 Source0:	https://github.com/open-iscsi/open-isns/archive/v%{version}.tar.gz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	glibc-static-devel
 BuildRequires:	pkgconfig(openssl)
 
