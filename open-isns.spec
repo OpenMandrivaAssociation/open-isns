@@ -1,22 +1,26 @@
 %define major	0
-%define libname	%mklibname open-isns %{major}
-%define devname	%mklibname -d open-isns
+%define libname	%mklibname isns
+%define devname	%mklibname -d isns
+
+# Renamed after 6.0 2026/06/01
+%define oldlibname	%mklibname open-isns 0
+%define olddevname	%mklibname -d open-isns
 
 Summary:	An implementation of RFC4171 iSNS
 Name:		open-isns
 Version:	0.101
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Other
 Url:		https://www.open-iscsi.org
 Source0:	https://github.com/open-iscsi/open-isns/archive/v%{version}.tar.gz
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool-base
 BuildRequires:	slibtool
 BuildRequires:	make
 BuildRequires:	glibc-static-devel
 BuildRequires:	pkgconfig(openssl)
+%rename insn-utils
 
 %description
 This is a partial implementation of iSNS, according to RFC4171.
@@ -26,6 +30,7 @@ it for your reading pleasure.
 %package -n	%{libname}
 Summary:	%{summary}
 Group:		System/Libraries
+%rename %{oldlibname}
 
 %description -n	%{libname}
 This is a partial implementation of iSNS, according to RFC4171.
@@ -37,13 +42,13 @@ Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
+%rename %{olddevname}
 
 %description -n	%{devname}
 This package includes the development files for %{name}.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 autoconf
